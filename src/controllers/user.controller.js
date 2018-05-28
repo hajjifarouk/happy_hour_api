@@ -1,6 +1,8 @@
 const JWT = require('jsonwebtoken');
 const User = require('../models/user.model');
 const { JWT_SECRET } = require('../configurations');
+const mongoose = require('mongoose');
+
 
 signToken = user => {
     return JWT.sign({
@@ -21,6 +23,7 @@ module.exports = {
         }
         // Create a new user
         const newUser = new User({
+            _id: mongoose.Types.ObjectId(),
             method: 'local',
             role: role,
             local: {
@@ -32,7 +35,7 @@ module.exports = {
         // Generate the token
         const token = signToken(newUser);
         // Respond with token
-        res.status(200).json({ user: result,token:token });
+        res.status(200).json({ user: newUser,token:token });
     },
     updateProfile: async (req, res, next) => {
         User.findOne({_id: req.params.id})

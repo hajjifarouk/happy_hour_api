@@ -14,7 +14,7 @@ if (process.env.NODE_ENV === 'test') {
     };
 } else {
     module.exports = {
-        JWT_SECRET: '',
+        JWT_SECRET: 'happyhourjwtsecret',
         oauth: {
             google: {
                 clientID: '881910879578-vlq49n9m5ltv565fa1cfrnjnuj410np3.apps.googleusercontent.com',

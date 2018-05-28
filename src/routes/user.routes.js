@@ -11,9 +11,9 @@ const passportFacebookSignIn = passport.authenticate('facebookToken', { session:
 const passportJWT = passport.authenticate('jwt', { session: false });
 
 router.route('/signup')
-    .post(validateBody(schemas.authSchema), UsersController.signUp);
+    .post(validateBody(schemas.signupSchema), UsersController.signUp);
 router.route('/signin')
-    .post(validateBody(schemas.authSchema), passportLocalSignIn, UsersController.signIn);
+    .post(validateBody(schemas.signinSchema), passportLocalSignIn, UsersController.signIn);
 router.route('/oauth/google')
     .post(passportGoogleSignIn, UsersController.googleOAuth);
 router.route('/oauth/facebook')

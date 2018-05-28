@@ -41,9 +41,15 @@ module.exports = {
     },
     upload : multer({storage: storage}),
     schemas: {
-        authSchema: Joi.object().keys({
+        signupSchema: Joi.object().keys({
             email: Joi.string().email().required(),
-            password: Joi.string().required()
+            password: Joi.string().required(),
+            role: Joi.string().required()
+        }),
+        signinSchema: Joi.object().keys({
+            email: Joi.string().email().required(),
+            password: Joi.string().required(),
+            role: Joi.string().required()
         })
     }
 }
