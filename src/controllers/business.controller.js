@@ -133,6 +133,9 @@ module.exports = {
     },
     getAllValidBusiness: (req, res, next) => {
         Business.find({valid: true})
+            .populate({path: 'address', model: Address})
+            .populate({path: 'offers', model: Offer})
+            .populate({path: 'owner', model: User})
             .then(result => {
                 if (result.count != 0)
                     res.status(200).json(result);
@@ -145,6 +148,9 @@ module.exports = {
     },
     getAllInvalidBusiness: (req, res, next) => {
         Business.find({valid: false})
+            .populate({path: 'address', model: Address})
+            .populate({path: 'offers', model: Offer})
+            .populate({path: 'owner', model: User})
             .then(result => {
                 if (result.count != 0)
                     res.status(200).json(result);
