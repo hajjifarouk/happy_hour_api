@@ -134,7 +134,7 @@ module.exports = {
     getAllValidBusiness: (req, res, next) => {
         Business.find({valid: true})
             .then(result => {
-                if (result.count() != 0)
+                if (result.count != 0)
                     res.status(200).json(result);
                 else
                     res.status(404).json({error: '0 valid business were found'});
@@ -146,7 +146,7 @@ module.exports = {
     getAllInvalidBusiness: (req, res, next) => {
         Business.find({valid: false})
             .then(result => {
-                if (result.count() != 0)
+                if (result.count != 0)
                     res.status(200).json(result);
                 else
                     res.status(404).json({error: '0 invalid business were found'});
