@@ -24,7 +24,7 @@ module.exports = {
                 let newBusiness = new Business({
                     _id: mongoose.Types.ObjectId(),
                     category: receivedBusiness.category,
-                    owner : receivedBusiness.owner,
+                    owner: receivedBusiness.owner,
                     name: receivedBusiness.name,
                     facebook: receivedBusiness.facebook,
                     whatsapp: receivedBusiness.whatsapp,
@@ -91,6 +91,7 @@ module.exports = {
                     updateOps[key] = req.body[key];
                 }
             }
+            console.log(updateOps);
             Business.update({_id: result._id}, {$set: updateOps})
                 .then(result => {
                     res.status(200).json({message: 'business updated successfully'});
@@ -204,7 +205,7 @@ module.exports = {
             });
     },
     getBusinessByOwner: (req, res, next) => {
-        Business.find({owner: req.params.owner})
+        Business.findOne({owner: req.params.id})
             .populate({path: 'address', model: Address})
             .populate({path: 'offers', model: Offer})
             .populate({path: 'owner', model: User})
@@ -212,18 +213,21 @@ module.exports = {
                 res.status(200).json(result);
             })
             .catch(error => {
-                res.status(404).json(error)
+                res.status(503).json(error)
             });
     },
     addImages: (req, res, next) => {
+        console.log(req.files);
+        //console.log(req.params);
         Business.findOne({_id: req.params.id})
             .then(result => {
                 let images = req.files.map(f => {
-                    console.log(f);
-                    return req.protocol + '://' + req.get('host')+  '/' + f.filename;
-                    //return path.join(__dirname, '../..', f.path);
+                    return req.protocol + '://' + req.get('host') + '/' + f.filename;
                 });
                 images = images.concat(result.images);
+                return images;
+
+            }).then(images => {
                 Business.update({_id: result._id}, {$set: {images: images}})
                     .then(result => {
                         res.status(200).json({message: 'images added successfully'});

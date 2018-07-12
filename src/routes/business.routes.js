@@ -36,6 +36,4 @@ router.route('/updateOffer/:id')
     .put(passBody(), BusinessController.updateOffer);
 router.route('deleteOffer/:id')
     .delete(passBody(), BusinessController.deleteOffer);
-
-
 module.exports = router;
