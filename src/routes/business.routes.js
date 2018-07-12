@@ -1,39 +1,39 @@
 const express = require('express');
 const router = require('express-promise-router')();
 
-const { validateBody,passBody, schemas,upload } = require('../helpers/routeHelpers');
+const { validateBody,passBody, schemas,upload,nocache } = require('../helpers/routeHelpers');
 const BusinessController = require('../controllers/business.controller');
 
 router.route('/add')
-    .post(passBody(), BusinessController.addBusiness);
+    .post(nocache, BusinessController.addBusiness);
 router.route('/validate/:id')
-    .put(passBody(), BusinessController.validateBusiness);
+    .put(nocache, BusinessController.validateBusiness);
 router.route('/invalidate/:id')
-    .put(passBody(), BusinessController.invalidateBusiness);
+    .put(nocache, BusinessController.invalidateBusiness);
 router.route('/update/:id')
-    .put(passBody(), BusinessController.updateBusiness);
+    .put(nocache, BusinessController.updateBusiness);
 router.route('/delete/:id')
-    .delete(passBody(), BusinessController.deleteBusiness);
+    .delete(nocache, BusinessController.deleteBusiness);
 router.route('/getAll')
-    .get(passBody(), BusinessController.getAllBusiness);
+    .get(nocache, BusinessController.getAllBusiness);
 router.route('/getAllValid')
-    .get(passBody(), BusinessController.getAllValidBusiness);
+    .get(nocache, BusinessController.getAllValidBusiness);
 router.route('/getAllInvalid')
-    .get(passBody(), BusinessController.getAllInvalidBusiness);
+    .get(nocache, BusinessController.getAllInvalidBusiness);
 router.route('/getBusinessByOwner/:id')
-    .get(passBody(), BusinessController.getBusinessByOwner);
+    .get(nocache, BusinessController.getBusinessByOwner);
 router.route('/get/:id')
-    .get(passBody(), BusinessController.getBusinessById);
+    .get(nocache, BusinessController.getBusinessById);
 router.route('/getByDistrict/:distrcit')
-    .get(passBody(), BusinessController.getBusinessByDistrict);
+    .get(nocache, BusinessController.getBusinessByDistrict);
 router.route('/addImages/:id')
-    .put(passBody(),upload.array('images'), BusinessController.addImages);
+    .put(nocache,upload.array('images'), BusinessController.addImages);
 router.route('/deleteImage/:id')
-    .delete(passBody(), BusinessController.deleteImage);
+    .delete(nocache, BusinessController.deleteImage);
 router.route('/addOffer/:id')
-    .post(passBody(), BusinessController.addOffer);
+    .post(nocache, BusinessController.addOffer);
 router.route('/updateOffer/:id')
-    .put(passBody(), BusinessController.updateOffer);
+    .put(nocache, BusinessController.updateOffer);
 router.route('deleteOffer/:id')
-    .delete(passBody(), BusinessController.deleteOffer);
+    .delete(nocache, BusinessController.deleteOffer);
 module.exports = router;
