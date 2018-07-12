@@ -218,7 +218,6 @@ module.exports = {
     },
     addImages: (req, res, next) => {
         console.log(req.files);
-        //console.log(req.params);
         Business.findOne({_id: req.params.id})
             .then(result => {
                 let images = req.files.map(f => {
@@ -228,7 +227,8 @@ module.exports = {
                 return images;
 
             }).then(images => {
-                Business.update({_id: result._id}, {$set: {images: images}})
+                console.log(images);
+                Business.update({_id: req.params.id}, {$set: {images: images}})
                     .then(result => {
                         res.status(200).json({message: 'images added successfully'});
                     })

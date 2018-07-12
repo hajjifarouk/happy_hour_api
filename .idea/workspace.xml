@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="8d212050-0229-4f13-8ef2-5e85cd1ee755" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/controllers/business.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/business.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/controllers/user.controller.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/controllers/user.controller.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/routes/business.routes.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/routes/business.routes.js" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
     <ignored path="$PROJECT_DIR$/temp/" />
@@ -22,8 +19,8 @@
       <file leaf-file-name="business.controller.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/controllers/business.controller.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="16">
-              <caret line="237" column="13" selection-start-line="237" selection-start-column="13" selection-end-line="237" selection-end-column="13" />
+            <state relative-caret-position="101">
+              <caret line="230" column="51" selection-start-line="230" selection-start-column="51" selection-end-line="230" selection-end-column="51" />
               <folding>
                 <element signature="e#2370#2988#0" />
                 <element signature="e#3034#3653#0" />
@@ -222,12 +219,12 @@
       <workItem from="1530225293983" duration="28000" />
       <workItem from="1530543884188" duration="11481000" />
       <workItem from="1531072809152" duration="2098000" />
-      <workItem from="1531407643841" duration="4120000" />
+      <workItem from="1531407643841" duration="5207000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="31292000" />
+    <option name="totallyTimeSpent" value="32379000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -658,8 +655,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/business.controller.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="16">
-          <caret line="237" column="13" selection-start-line="237" selection-start-column="13" selection-end-line="237" selection-end-column="13" />
+        <state relative-caret-position="101">
+          <caret line="230" column="51" selection-start-line="230" selection-start-column="51" selection-end-line="230" selection-end-column="51" />
           <folding>
             <element signature="e#2370#2988#0" />
             <element signature="e#3034#3653#0" />
