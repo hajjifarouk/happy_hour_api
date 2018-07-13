@@ -4,7 +4,8 @@ const Offer = require('../models/offer.model');
 const User = require('../models/user.model');
 const mongoose = require('mongoose');
 const fs = require('fs');
-
+var url = require("url");
+var path = require("path");
 
 module.exports = {
     addBusiness: (req, res, next) => {
@@ -244,7 +245,7 @@ module.exports = {
             });
     },
     deleteImage: (req, res, next) => {
-        const di = req.body.image;
+        const di = './uploads/'+ path.basename(url.parse(req.body.image).pathname);
         Business.findOne({_id: req.params.id})
             .then(result => {
                 let images = result.images.filter(i => i !== di)
@@ -340,4 +341,8 @@ module.exports = {
                 res.status(404).json({error: 'could not find offer'});
             })
     },
+    test: (req,res,next)=>{
+        var parsed = url.parse("http://167.99.141.137/201841312926.png");
+        console.log(path.basename(parsed.pathname));
+    }
 }
