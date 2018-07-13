@@ -225,30 +225,31 @@ module.exports = {
                 });
                 images = images.concat(result.images);
                 return images;
-            }).then(images => {
-            Business.update({_id: req.params.id}, {$set: {images: images}})
-                .then(result => {
-                    Business.findOne({_id: req.params.id})
-                        .populate({path: 'address', model: Address})
-                        .populate({path: 'offers', model: Offer})
-                        .populate({path: 'owner', model: User})
-                        .then(result => {
-                            res.status(200).json({business: result, message: 'images added successfully'});
-                        })
-                })
-                .catch(error => {
-                    res.status(500).json({error: error.message});
-                });
-        })
+            })
+            .then(images => {
+                Business.update({_id: req.params.id}, {$set: {images: images}})
+                    .then(result => {
+                        Business.findOne({_id: req.params.id})
+                            .populate({path: 'address', model: Address})
+                            .populate({path: 'offers', model: Offer})
+                            .populate({path: 'owner', model: User})
+                            .then(result => {
+                                res.status(200).json({business: result, message: 'images added successfully'});
+                            })
+                    })
+                    .catch(error => {
+                        res.status(500).json({error: error.message});
+                    });
+            })
             .catch(error => {
-                res.status(404).json({message: error.message});
+                res.status(400).json({message: error.message});
             });
     },
     deleteImage: (req, res, next) => {
-        const di = './uploads/'+ path.basename(url.parse(req.body.image).pathname);
+        const di = './uploads/' + path.basename(url.parse(req.params.image).pathname);
         Business.findOne({_id: req.params.id})
             .then(result => {
-                let images = result.images.filter(i => i !== req.body.image)
+                let images = result.images.filter(i => i !== req.params.image)
                 return images;
             })
             .then(images => {

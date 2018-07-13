@@ -28,7 +28,7 @@ router.route('/getByDistrict/:distrcit')
     .get(nocache, BusinessController.getBusinessByDistrict);
 router.route('/addImages/:id')
     .put(nocache,upload.array('images'), BusinessController.addImages);
-router.route('/deleteImage/:id')
+router.route('/deleteImage/:id/:image')
     .delete(nocache, BusinessController.deleteImage);
 router.route('/addOffer/:id')
     .post(nocache, BusinessController.addOffer);
