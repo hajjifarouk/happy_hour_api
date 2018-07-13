@@ -36,6 +36,4 @@ router.route('/updateOffer/:id')
     .put(nocache, BusinessController.updateOffer);
 router.route('/deleteOffer/:id')
     .delete(nocache, BusinessController.deleteOffer);
-router.route('/test')
-    .get(nocache,BusinessController.test);
 module.exports = router;

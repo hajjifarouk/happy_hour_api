@@ -248,7 +248,7 @@ module.exports = {
         const di = './uploads/'+ path.basename(url.parse(req.body.image).pathname);
         Business.findOne({_id: req.params.id})
             .then(result => {
-                let images = result.images.filter(i => i !== di)
+                let images = result.images.filter(i => i !== req.body.image)
                 return images;
             })
             .then(images => {
@@ -341,8 +341,4 @@ module.exports = {
                 res.status(404).json({error: 'could not find offer'});
             })
     },
-    test: (req,res,next)=>{
-        var parsed = url.parse("http://167.99.141.137/201841312926.png");
-        console.log(path.basename(parsed.pathname));
-    }
 }
