@@ -225,20 +225,20 @@ module.exports = {
                 images = images.concat(result.images);
                 return images;
             }).then(images => {
-                Business.update({_id: req.params.id}, {$set: {images: images}})
-                    .then(result => {
-                        Business.findOne({_id: req.params.id})
-                            .populate({path: 'address', model: Address})
-                            .populate({path: 'offers', model: Offer})
-                            .populate({path: 'owner', model: User})
-                            .then(result =>{
-                                res.status(200).json({business:result, message:'images added successfully'});
-                            })
-                    })
-                    .catch(error => {
-                        res.status(500).json({error: error.message});
-                    });
-            })
+            Business.update({_id: req.params.id}, {$set: {images: images}})
+                .then(result => {
+                    Business.findOne({_id: req.params.id})
+                        .populate({path: 'address', model: Address})
+                        .populate({path: 'offers', model: Offer})
+                        .populate({path: 'owner', model: User})
+                        .then(result => {
+                            res.status(200).json({business: result, message: 'images added successfully'});
+                        })
+                })
+                .catch(error => {
+                    res.status(500).json({error: error.message});
+                });
+        })
             .catch(error => {
                 res.status(404).json({message: error.message});
             });
@@ -248,12 +248,21 @@ module.exports = {
         Business.findOne({_id: req.params.id})
             .then(result => {
                 let images = result.images.filter(i => i !== di)
-                Business.update({_id: result._id}, {$set: {images: images}})
+                return images;
+            })
+            .then(images => {
+                Business.update({_id: req.params.id}, {$set: {images: images}})
                     .then(result => {
                         fs.unlink(di, (err) => {
                             if (err) throw err;
                         });
-                        res.status(200).json({message: 'image deleted successfully'});
+                        Business.findOne({_id: req.params.id})
+                            .populate({path: 'address', model: Address})
+                            .populate({path: 'offers', model: Offer})
+                            .populate({path: 'owner', model: User})
+                            .then(result => {
+                                res.status(200).json({business: result, message: 'image deleted successfully'});
+                            })
                     })
                     .catch(error => {
                         res.status(500).json({message: error.message});
