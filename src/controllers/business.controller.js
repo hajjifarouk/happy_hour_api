@@ -45,7 +45,7 @@ module.exports = {
                 });
                 newBusiness.save()
                     .then(result => {
-                        res.status(200).json({message: 'business added successfully'});
+                        res.status(200).json({business: result, message: 'business added successfully'});
                     })
                     .catch(error => {
                         res.status(500).json({error: error.message});
@@ -140,7 +140,7 @@ module.exports = {
             .populate({path: 'owner', model: User})
             .then(result => {
                 if (result.count != 0)
-                    res.status(200).json(result);
+                    res.status(200).json({businesses: result, message: result.length+' valid businesses was found'});
                 else
                     res.status(404).json({error: '0 valid business were found'});
             })
@@ -155,7 +155,7 @@ module.exports = {
             .populate({path: 'owner', model: User})
             .then(result => {
                 if (result.count != 0)
-                    res.status(200).json(result);
+                    res.status(200).json({businesses: result, message: result.length+' invalid businesses was found'});
                 else
                     res.status(404).json({error: '0 invalid business were found'});
             })
@@ -170,7 +170,7 @@ module.exports = {
             .populate({path: 'owner', model: User})
             .then(result => {
                 if (result.count != 0)
-                    res.status(200).json(result);
+                    res.status(200).json({businesses: result, message: result.length +' businesses was found'});
                 else
                     res.status(404).json({error: '0 business were found'});
             })
@@ -184,7 +184,7 @@ module.exports = {
             .populate({path: 'offers', model: Offer})
             .populate({path: 'owner', model: User})
             .then(result => {
-                res.status(200).json(result);
+                res.status(200).json({business: result, message: 'business was found'});
             })
             .catch(error => {
                 res.status(404).json(error);
@@ -199,7 +199,7 @@ module.exports = {
             .populate({path: 'offers', model: Offer})
             .populate({path: 'owner', model: User})
             .then(result => {
-                res.status(200).json(result);
+                res.status(200).json({businesses: result, message: result.length+' businesses was found'});
             })
             .catch(error => {
                 res.status(404).json(error)
@@ -211,7 +211,7 @@ module.exports = {
             .populate({path: 'offers', model: Offer})
             .populate({path: 'owner', model: User})
             .then(result => {
-                res.status(200).json(result);
+                res.status(200).json({business: result, message: 'businesses was found'});
             })
             .catch(error => {
                 res.status(503).json(error)
